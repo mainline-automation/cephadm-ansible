@@ -31,6 +31,8 @@
       - rhceph-4-osd-for-rhel-{{ ansible_facts['distribution_major_version'] }}-{{ ansible_facts['architecture'] }}-rpms
     repos_5_to_disable:
       - rhceph-5-tools-for-rhel-{{ ansible_facts['distribution_major_version'] }}-{{ ansible_facts['architecture'] }}-rpms
+    repos_6_to_disable:
+      - rhceph-6-tools-for-rhel-{{ ansible_facts['distribution_major_version'] }}-{{ ansible_facts['architecture'] }}-rpms
     packages_to_uninstall:
       - ceph-mds
       - ceph-mgr
@@ -62,7 +64,7 @@
             - name: disable older rhceph repositories if any on RHEL{{ansible_facts['distribution_major_version']}}
               when: ansible_facts['distribution_major_version'] == '9'
               rhsm_repository:
-                name: "{{ repos_5_to_disable }}"
+                name: "{{ repos_5_to_disable + repos_6_to_disable }}"
                 state: absent
 
         - name: enable ceph package repositories
