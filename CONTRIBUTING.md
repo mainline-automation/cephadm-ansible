@@ -5,16 +5,19 @@
 ## Commit guidelines
 
 - All commits should have a subject and a body
-- The commit subject should briefly describe what the commit changes
-- The commit body should describe the problem addressed and the chosen solution
+- The commit subject should briefly describe the change introduced by the
+  commit
+- The commit body should describe the problem addressed by the commit and the
+  solution chosen
   - What was the problem and solution? Why that solution? Were there alternative ideas?
 - Wrap commit subjects and bodies to 80 characters
 - Sign-off your commits
-- Add a best-effort scope designation to commit subjects. This could be a directory name, file name,
-  or the name of a logical grouping of code. Examples:
+- Add a best-effort scope designation to commit subjects. This could be a
+  directory name, file name, or the name of a logical grouping of code.
+  Examples:
   - library: add a placeholder module for the validate action plugin
   - site.yml: combine validate play with fact gathering play
-- Commits linked with an issue should trace them with :
+- Commits linked with an issue should be tracked with a string of the following form:
   - Fixes: #2653
 
 [Suggested reading.](https://chris.beams.io/posts/git-commit/)
@@ -23,51 +26,66 @@
 
 ### Jenkins CI
 
-We use Jenkins to run several tests on each pull request.
+We use Jenkins to run various tests on each pull request.
 
-If you don't want to run a build for a particular pull request, because all you are changing is the
-README for example, add the text `[skip ci]` to the PR title.
+If you prefer not to run a build for a particular pull request, because for
+example you are just changing the `README`, add the text `[skip ci]` to the PR
+title.
 
 ### Merging strategy
 
-Merging PR is controlled by [mergify](https://mergify.io/) by the following rules:
+Merging PR is controlled by [mergify](https://mergify.io/) by the following
+rules:
 
-- at least one approuval from a maintainer
+- at least one approval from a maintainer
 - a SUCCESS from the CI pipeline "cephadm-ansible PR Pipeline"
 
-If you work is not ready for review/merge, please request the DNM label via a comment or the title of your PR.
-This will prevent the engine merging your pull request.
+If your work is not ready for review and merging, request the `DNM` (**D**o
+**N**ot **M**erge) label via a comment or the title of your PR. This will
+prevent the engine from merging your pull request.
 
 ### Backports (maintainers only)
 
-If you wish to see your work from 'main' being backported to a stable branch you can ping a maintainer
-so he will set the backport label on your PR. Once the PR from main is merged, a backport PR will be created by mergify,
-if there is a cherry-pick conflict you must resolv it by pulling the branch.
+If you want to backport your work from `main` to a stable branch, contact a
+maintainer and ask them to set the backport label on your PR. When the PR from
+`main` is merged, a backport PR will be created by mergify. If there is a
+cherry-pick conflict, you must resolve it by pulling the branch.
 
-**NEVER** push directly into a stable branch, **unless** the code from main has diverged so much that the files don't exist in the stable branch.
-If that happens, inform the maintainers of the reasons why you pushed directly into a stable branch, if the reason is invalid, maintainers will immediatly close your pull request.
+**NEVER** push directly into a stable branch, **unless** the code from main has
+diverged so much that the files don't exist in the stable branch.  If that
+happens, inform the maintainers of the reasons why you pushed directly into a
+stable branch, if the reason is invalid, maintainers will immediatly close your
+pull request.
 
 ### Keep your branch up-to-date
 
-Sometimes, a pull request can be subject to long discussion, reviews and comments, meantime, `main`
-moves forward so let's try to keep your branch rebased on main regularly to avoid huge conflict merge.
-A rebased branch is more likely to be merged easily & shorter.
+Sometimes, a pull request can be subject to long discussion, reviews and
+comments. In the meantime, `main` moves forward. In these circumstances, keep
+your branch rebased on `main` regularly to avoid merge conflicts. A rebased
+branch is easier to merge than a branch that has fallen out of sync with `main`
+and has not been rebased on `main`.
 
 ### Organize your commits
 
-Do not split your commits unecessary, we are used to see pull request with useless additional commits like
-"I'm addressing reviewer's comments". So, please, squash and/or amend them as much as possible.
+Do not split your commits unecessarily. Squash or amend commits that have
+titles like "I'm addressing reviewer's comments".
 
-Similarly, split them when needed, if you are modifying several parts in cephadm-ansible or pushing a large
-patch you may have to split yours commit properly so it's better to understand your work.
-Some recommandations:
+On the other hand, split your commits when it is smarter to do so. If you are
+modifying several distinct parts of `cephadm-ansible` or you are pushing a
+large patch, it might be better to split your large commit into multiple
+smaller commits so that others can more easily understand your work.
+
+Some recommendations:
 
 - one fix = one commit,
-- do not mix multiple topics in a single commit,
-- if you PR contains a large number of commits that are each other totally unrelated, it should probably even be split in several PRs.
+- do not mix multiple topics in a single commit
+- when your PR contains many commits that are not related to one another,
+  split those commits across several PRs
 
-If you've broken your work up into a set of sequential changes and each commit pass the tests on their own then that's fine.
-If you've got commits fixing typos or other problems introduced by previous commits in the same PR, then those should be squashed before merging.
+If your work has been broken up into a set of sequential changes and each
+commit passes the tests individually, then that's fine. Any commits that fix
+typos or address problems introduced by other commits in the same PR should be
+squashed before merging.
 
 If you are new to Git, these links might help:
 
