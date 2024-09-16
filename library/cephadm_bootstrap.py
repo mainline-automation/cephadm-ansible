@@ -87,7 +87,7 @@ options:
         default: true
     allow_overwrite:
         description:
-            - allow overwrite of existing –output-* config/keyring/ssh files.
+            - allow overwrite of existing -output-* config/keyring/ssh files.
         required: false
         default: false
     registry_url:
