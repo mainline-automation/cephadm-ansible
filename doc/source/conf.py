@@ -22,7 +22,7 @@ copyright = '2022, Red Hat'
 author = 'Guillaume Abrioux'
 
 # The full version, including alpha/beta/rc tags
-release = 'v2.0'
+release = 'v4.0'
 
 
 # -- General configuration ---------------------------------------------------
