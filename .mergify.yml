@@ -1,5 +1,11 @@
 pull_request_rules:
-# Backports
+  - name: backport squid
+    conditions:
+      - label=backport-squid
+    actions:
+      backport:
+        branches:
+          - squid
   - actions:
       backport:
         branches:
@@ -26,4 +32,3 @@ commands_restrictions:
     conditions:
       - base=devel
       - number<0
-
