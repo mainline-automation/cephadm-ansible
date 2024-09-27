@@ -12,7 +12,7 @@ workflows that are not covered by [cephadm]_. They are covered by the following 
 * cephadm-distribute-ssh-key.yml: Distribute a SSH public key to all hosts
 * cephadm-set-container-insecure-registries.yml: Add a block in /etc/containers/registries.conf to add an insecure registry
 
-Additionnally, several ansible modules are provided in order to let people writing their own playbooks.
+Additionally, several ansible modules are provided in order to let people writing their own playbooks.
 
 
 .. [cephadm] https://docs.ceph.com/en/latest/cephadm/
